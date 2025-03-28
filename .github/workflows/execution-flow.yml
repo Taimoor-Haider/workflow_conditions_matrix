@@ -35,10 +35,8 @@ jobs:
       - name: Test code
         id: test_status
         run: npm run test
-      - name: Check for failures
-        if: failure() && steps.test_status.outcome == 'failure'
-        run: echo "Tests failed" >> test.json
       - name: Upload test report
+        if: failure() && steps.test_status.outcome == 'failure'
         uses: actions/upload-artifact@v4
         with:
           name: test-report
