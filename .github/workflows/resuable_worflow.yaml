@@ -1,8 +1,20 @@
 name: Reusable workflow
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      artifact_name:
+        description: "Name of the artifact to download"
+        type: string
+        default: dist
+        required: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Using the reusable workflow
+      - name: Dowloading artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: $ {{inputs.artifact_name}}
+      - name: Deploying to productio
         run: echo "Running reusable workflow"
