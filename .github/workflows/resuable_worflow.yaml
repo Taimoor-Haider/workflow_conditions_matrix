@@ -7,10 +7,16 @@ on:
         type: string
         default: dist
         required: false
+    outputs:
+      result:
+        description: "The downloaded artifact"
+        value: "${{ jobs.deploy.outputs.outcome}}"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      outcome: ${{ steps.outcome_id.outputs.outcome}}
     steps:
       - name: Dowloading artifact
         uses: actions/download-artifact@v4
@@ -18,5 +24,8 @@ jobs:
           name: ${{inputs.artifact_name}}
       - name: Listing th download artifacts
         run: ls
+      - name: Setting output for the job
+        id: outcome_id
+        run: echo "outcome=myOutcome" >> "$GITHUB_OUTPUT"
       - name: Deploying to productio
         run: echo "Running reusable workflow"
