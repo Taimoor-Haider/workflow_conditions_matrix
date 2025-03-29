@@ -1,8 +1,8 @@
 name: Reusable workflow
 on: workflow_call
 jobs:
-  build_and_test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: Using the reusable workflow
-      - run: echo "Running reusable workflow"
+      - name: Using the reusable workflow
+        run: echo "Running reusable workflow"
