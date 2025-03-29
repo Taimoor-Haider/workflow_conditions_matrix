@@ -16,5 +16,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: $ {{inputs.artifact_name}}
+      - name: Listing th download artifacts
+        run: ls
       - name: Deploying to productio
         run: echo "Running reusable workflow"

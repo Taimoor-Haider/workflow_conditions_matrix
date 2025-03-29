@@ -69,6 +69,8 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/resuable_worflow.yaml
+    with:
+      artifact_name: dist-files
   log:
     needs: [lint, test, build, deploy]
     if: failure()
