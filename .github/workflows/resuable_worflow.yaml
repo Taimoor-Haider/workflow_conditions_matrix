@@ -15,7 +15,7 @@ jobs:
       - name: Dowloading artifact
         uses: actions/download-artifact@v4
         with:
-          name: $ {{inputs.artifact_name}}
+          name: ${{inputs.artifact_name}}
       - name: Listing th download artifacts
         run: ls
       - name: Deploying to productio
